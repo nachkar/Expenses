@@ -1,0 +1,135 @@
+-- phpMyAdmin SQL Dump
+-- version 4.2.10
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost:8889
+-- Generation Time: Feb 05, 2015 at 06:14 PM
+-- Server version: 5.5.38
+-- PHP Version: 5.6.2
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `Expenses`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Categories`
+--
+
+CREATE TABLE `Categories` (
+`id` int(11) NOT NULL,
+  `CategoryName` varchar(50) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Categories`
+--
+
+INSERT INTO `Categories` (`id`, `CategoryName`) VALUES
+(1, 'Gas'),
+(2, 'School');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Operations`
+--
+
+CREATE TABLE `Operations` (
+`id` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `categoryid` int(11) NOT NULL,
+  `description` varchar(50) NOT NULL,
+  `amout` int(20) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Operations`
+--
+
+INSERT INTO `Operations` (`id`, `userid`, `categoryid`, `description`, `amout`) VALUES
+(5, 3, 1, 'pay', 10005),
+(7, 4, 2, 'Pencils', 5000),
+(8, 5, 2, 'Tuition', 100000),
+(9, 3, 2, 'bookss', 12312),
+(10, 3, 1, 'payyy', 1111);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Users`
+--
+
+CREATE TABLE `Users` (
+`id` int(11) NOT NULL,
+  `Flag` int(11) NOT NULL,
+  `Username` varchar(50) DEFAULT NULL,
+  `Password` varchar(255) DEFAULT NULL,
+  `FirstName` varchar(50) DEFAULT NULL,
+  `LastName` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Users`
+--
+
+INSERT INTO `Users` (`id`, `Flag`, `Username`, `Password`, `FirstName`, `LastName`) VALUES
+(3, 0, 'hkr', 'hkr', 'Noel', 'Achkar'),
+(4, 1, 'admin', 'admin', NULL, NULL),
+(5, 0, 'achkar', 'achkar', 'Noel', 'Achkar');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `Categories`
+--
+ALTER TABLE `Categories`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `Operations`
+--
+ALTER TABLE `Operations`
+ ADD PRIMARY KEY (`id`), ADD KEY `uid` (`userid`), ADD KEY `cid` (`categoryid`);
+
+--
+-- Indexes for table `Users`
+--
+ALTER TABLE `Users`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `Categories`
+--
+ALTER TABLE `Categories`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `Operations`
+--
+ALTER TABLE `Operations`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `Users`
+--
+ALTER TABLE `Users`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `Operations`
+--
+ALTER TABLE `Operations`
+ADD CONSTRAINT `cid` FOREIGN KEY (`categoryid`) REFERENCES `Categories` (`id`),
+ADD CONSTRAINT `uid` FOREIGN KEY (`userid`) REFERENCES `Users` (`id`);

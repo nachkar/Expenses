@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="OperationsViewDlg" widgetVar="OperationsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewOperationsTitle}">
+            <h:form id="OperationsViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{operationsController.selected != null}">
+                        <h:outputText value="ID"/>
+                        <h:outputText value="#{operationsController.selected.id}" title="#{bundle.ViewOperationsTitle_id}"/>
+                        <h:outputText value="Description"/>
+                        <h:outputText value="#{operationsController.selected.description}" title="#{bundle.ViewOperationsTitle_description}"/>
+                        <h:outputText value="Amount"/>
+                        <h:outputText value="#{operationsController.selected.amout}" title="#{bundle.ViewOperationsTitle_amout}"/>
+                        <h:outputText value="Category"/>
+                        <h:outputText value="#{operationsController.selected.categoryid.categoryName}" title="#{bundle.ViewOperationsTitle_categoryid}"/>
+                        <h:outputText value="User"/>
+                        <h:outputText value="#{operationsController.selected.userid.username}" title="#{bundle.ViewOperationsTitle_userid}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="OperationsViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

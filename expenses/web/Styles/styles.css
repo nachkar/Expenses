@@ -1,0 +1,54 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 25, 2015, 2:40:05 PM
+    Author     : noelachkar
+*/
+
+html,body,div,dl,dt,dd,ul,ol,li,h1,xh2,h3,h4,h5,h6,pre,form,fieldset,input,p,blockquote,th,td{margin:0;padding:0;}img,body,html{border:0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}ol,ul {list-style:none;}caption,th {text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;}q:before,q:after{content:'';}
+
+body{ background:url(../images/main-bg.jpg) repeat; font-family:"Arial"}
+
+
+
+/*------------------------------------------------
+	Login
+------------------------------------------------*/
+.label {font-family:"Rockwell";}
+.login{ background:url(../images/bg-login.png) no-repeat; width:613px; height:379px; margin:0 auto}
+.textfield{ background:url(../images/input-bg.png) no-repeat; width:190px; height:24px;border:0;line-height:20px; padding: 0px 5px;font-family: "Rockwell";}
+.login form fieldset label{ font-size:1.2em; padding:0 30px 0 0; color:#5a5a5c}
+.login form fieldset { border:none; line-height:35px; text-align:right}
+.login form{ -webkit-appearance: caret;-moz-appearance: caret;padding:190px 0 0 0; clear:both; width:500px; margin:0 auto; float:left; position:relative; left:-50px}
+.login-btn { background:url(../images/login-btn.png) no-repeat; width:61px; height:24px;border:0;-webkit-appearance: caret;-moz-appearance: caret; cursor:pointer;  position:relative; top:5px\0/!important; /* IE 8 */}
+
+.error-login{clear:both; padding:0; color:#F00; background:none; border:none; width:400px; margin:0 0 0 20px}
+
+
+/*------------------------------------------------
+	Grid
+------------------------------------------------*/
+
+	
+h3.trends{ text-align:center; clear:both; font-size:1.5em; background:#e4e4e4; padding:10px; position:relative; color:#515968;border:2px solid #ccc; border-bottom:none}
+.table-navig{ background:url(../images/table-nav-bg.png) repeat-x; height:30px;margin:0 auto;}
+.table-navig ul{ margin:0 0 0 450px; padding:5px 0 0 0}		
+.table-navig li{ float:left; }	
+ul.header-navig{ margin:0 auto; width:1100px; clear:both; position:relative; top:-40px;*top:10px; margin-bottom:50px;*margin-bottom:30px}
+ul.header-navig li{float:left; width:366px}
+li.itunes-logo{ background:url(../images/itc-masthead.png) no-repeat 0 0; width:173px; height:23px;display:block}	
+li.company-name{ text-align:center; font-size:2.5em;  font-weight:bold}
+.sign-out{ background:url(../images/sign-out-btn.png) no-repeat;width:61px; height:24px;border:0;-webkit-appearance: caret;-moz-appearance: caret; cursor:pointer;  position:relative; float:right; top1:-20px}
+li.table-grid-btn a{ background:url(../images/table-grid-btn.png) no-repeat; border:none;	width:99px; height:20px;display:block;text-align:center; color:#FFF; text-decoration:none; font-size:.8em}
+li.table-grid-btn a:hover{ background-position: 0 -19px;}
+li.table-grid-btn a.visited{ background-position: 0 -19px;}
+
+.clear{height:20px}
+.floatright { float: right; margin: 0px 0px 5px 5px; }
+.floatleft { float: left; margin: 0px 5px 5px 0px; }
+.white{background:#FFFFFF ;}
+
+.Paging{width:50px ; text-align:center; }

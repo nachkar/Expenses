@@ -1,0 +1,34 @@
+ <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <link href="Styles/styles.css" rel="stylesheet" type="text/css"/>
+        <title>Login</title>
+    </h:head>
+    <h:body>
+        <div class="login">
+        <h:form id="loginForm">         
+            <p:growl id="msg" showDetail="true" life="3000" />
+ 
+                    <fieldset>
+                        <label class="label" for="username">Username</label>
+                         <p:inputText id="username" value="#{LoginBean.username}" class="textfield"></p:inputText>                     
+                    </fieldset>
+
+                    <fieldset >
+                         <label class="label" for="password">Password</label>
+                         <p:password id="password" value="#{LoginBean.password}" feedback="false" class="textfield"></p:password>
+                    </fieldset>
+                    <fieldset >
+                        <p:commandButton action="#{LoginBean.checkValidUser()}" value="" update="loginForm" ajax="true" styleClass="login-btn"></p:commandButton>
+                    </fieldset>
+                      <fieldset class="error-login">
+                          <h:outputText class="label" value="#{LoginBean.error}"/>
+                       </fieldset>
+        </h:form>
+        </div>
+    </h:body>
+ 
+</html>
+
