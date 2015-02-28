@@ -59,18 +59,19 @@ public class LoginBean {
     ResultSet rs;
     String SQL_Str;
  
-    public void dbData(String UName)
+    public void dbData()
     {
         try
-        {            
+        {    
+            String userna = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:8889/Expenses","root","root");
             ps = con.createStatement();
-            SQL_Str="Select * from users where username like ('" + UName +"')";
+            SQL_Str="Select * from users where username like ('" + userna +"')";
             rs=ps.executeQuery(SQL_Str);
             rs.next();
             dbusername=rs.getString(3);
-            dbpassword=rs.getString(4);
             flag=rs.getString(2);
             userId=rs.getInt(1);
         }
@@ -94,37 +95,18 @@ public class LoginBean {
     public void setUsername(String username) {
         this.username = username;
     }
-    public String checkValidUser()
+    public void checkValidUser()
     {
-        dbData(username);
- 
-        if(username.equalsIgnoreCase(dbusername))
-        {
-            if(password.equals(dbpassword))
-            {
-                FacesContext context = FacesContext.getCurrentInstance();
-                switch (flag) {
-                    case "0":
-                        context.getExternalContext().getSessionMap().put("flag", "0");
-                        context.getExternalContext().getSessionMap().put("userId",userId);
-                        return "operations/List?faces-redirect=true";
-                    case "1":
-                        context.getExternalContext().getSessionMap().put("flag","1");
-                        context.getExternalContext().getSessionMap().put("userId",userId);
-                        return "operations/List?faces-redirect=true";
+        dbData();
+
+        FacesContext context = FacesContext.getCurrentInstance();
+        switch (flag) {
+            case "0":
+                    context.getExternalContext().getSessionMap().put("flag", "0");
+                    context.getExternalContext().getSessionMap().put("userId",userId);
+            case "1":
+                    context.getExternalContext().getSessionMap().put("flag","1");
+                    context.getExternalContext().getSessionMap().put("userId",userId);
                 }
-            }
-            else
-            {
-                error = "Your Password is incorrect.";
-                return null;
-            }
-        }
-        else
-        {
-            error = "Your Username doesn't exist.";
-            return null;
-        }
-        return null;
     }
 }

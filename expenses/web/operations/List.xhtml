@@ -15,7 +15,7 @@
         <ui:define name="body">
 
             <h:form id="OperationsListForm">
-               <p:commandButton action="#{operationsController.Logout()}" value="" update="" ajax="true" styleClass="sign-out"></p:commandButton>
+               <p:commandButton action="#{operationsController.Logout}" value="" update="" ajax="false" styleClass="sign-out"></p:commandButton>
                <p:commandButton action="#{operationsController.goToUsers()}" styleClass="#{operationsController.usersVisible}" value="" update="" ajax="true"></p:commandButton>
                <p:commandButton action="#{operationsController.goToCategories()}" styleClass="#{operationsController.categoriesVisible}" value="" update="" ajax="true"></p:commandButton>
 

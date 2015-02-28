@@ -1,5 +1,6 @@
 package JSFClasses;
 
+import Beans.LoginBean;
 import Classes.Operations;
 import JSFClasses.util.JsfUtil;
 import JSFClasses.util.JsfUtil.PersistAction;
@@ -7,6 +8,11 @@ import Beans.OperationsFacade;
 import java.io.IOException;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -20,6 +26,9 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @ManagedBean(name = "operationsController")
 @SessionScoped
@@ -31,35 +40,58 @@ public class OperationsController implements Serializable {
     private Operations selected;
     public String usersVisible;
     public String categoriesVisible;
+    private String dbusername;
+    private String dbpassword;
+    private String flag;
+    private String error;
+    private int userId;
 
+     public int getUserId() {
+        return userId;
+    }
+    
+    public String getError() {
+        return error;
+    }
+    
+    public String getFlag() {
+        return flag;
+    }
+ 
+    public String getDbpassword() {
+        return dbpassword;
+    }
+    
+    public String getDbusername() {
+        return dbusername;
+    }
+    
     public String getCategoriesVisible() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        String flags =  (String) context.getExternalContext().getSessionMap().get("flag");
-              
-            switch (flags) {
-                case "0":
-                    categoriesVisible="categories-hidden";
-                    break;
-                case "1":
-                    categoriesVisible="categories-visible";
-                    break;
-            }
+
+         switch (flag) {
+            case "0":
+                categoriesVisible="categories-hidden";
+                break;
+            case "1":
+                categoriesVisible="categories-visible";
+                break;
+        }
+         
         return categoriesVisible;
     }
 
     public String getUsersVisible() {
-        
-        FacesContext context = FacesContext.getCurrentInstance();
-        String flags =  (String) context.getExternalContext().getSessionMap().get("flag");
               
-            switch (flags) {
-                case "0":
-                    usersVisible="users-hidden";
-                    break;
-                case "1":
-                    usersVisible="users-visible";
-                    break;
-            }
+    checkValidUser();
+
+     switch (flag) {
+            case "0":
+                usersVisible="users-hidden";
+                break;
+            case "1":
+                usersVisible="users-visible";
+                break;
+        }
         return usersVisible;
     }
 
@@ -97,14 +129,14 @@ public class OperationsController implements Serializable {
         }
     }
     
-    public void goToUsers() throws IOException{
-        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-        externalContext.redirect("../users/List.xhtml");
+    public String goToUsers() throws IOException
+    {
+        return "/users/List.xhtml";
     } 
     
-    public void goToCategories() throws IOException{
-        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-        externalContext.redirect("../categories/List.xhtml");
+    public String goToCategories() throws IOException
+    {
+        return "/categories/List.xhtml";
     } 
 
     public void update() {
@@ -119,20 +151,80 @@ public class OperationsController implements Serializable {
         }
     }
     
-    public void Logout() throws IOException {
-        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        ec.invalidateSession();
-        ec.redirect("../Login.xhtml");
-    }
+    public String Logout() throws IOException, ServletException
+    {
+        String destination = "/Login.xhtml?faces-redirect=true";
 
+        // FacesContext provides access to other container managed objects,
+        // such as the HttpServletRequest object, which is needed to perform
+        // the logout operation.
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = 
+                (HttpServletRequest) context.getExternalContext().getRequest();
+
+        try {
+            // added May 12, 2014
+            HttpSession session = request.getSession();
+            session.invalidate();
+            
+            // this does not invalidate the session but does null out the user Principle
+            request.logout();
+        } catch (ServletException e) {
+        }
+
+        return destination; // go to destination
+    }
+    
+    Connection con;
+    Statement ps;
+    ResultSet rs;
+    String SQL_Str;
+    
+       public void dbData()
+    {
+        try
+        {    
+            String userna = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:8889/Expenses","root","root");
+            ps = con.createStatement();
+            SQL_Str="Select * from users where username like ('" + userna +"')";
+            rs=ps.executeQuery(SQL_Str);
+            rs.next();
+            dbusername=rs.getString(3);
+            flag=rs.getString(2);
+            userId=rs.getInt(1);
+        }
+        catch(ClassNotFoundException | SQLException ex)
+        {
+            System.out.println("Exception Occur :" + ex);
+        }
+    }
+       
+    public void checkValidUser()
+    {
+        dbData();
+        
+        FacesContext context = FacesContext.getCurrentInstance();
+        switch (flag) {
+            case "0":
+                context.getExternalContext().getSessionMap().put("flag", "0");
+                context.getExternalContext().getSessionMap().put("userId",userId);
+                break;
+            case "1":
+                context.getExternalContext().getSessionMap().put("flag","1");
+                context.getExternalContext().getSessionMap().put("userId",userId);
+                break;
+        }
+    }
+       
     public List<Operations> getItems() {
-        if (items == null) {
-             FacesContext context = FacesContext.getCurrentInstance();
-              String flags =  (String) context.getExternalContext().getSessionMap().get("flag");
-              
-            switch (flags) {
+                
+        if (items == null)
+        {  
+            switch (flag) {
                 case "0":
-                    int userId = (int) context.getExternalContext().getSessionMap().get("userId");
                     items = getFacade().findByUser(userId);
                     break;
                 case "1":

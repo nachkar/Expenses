@@ -42,6 +42,7 @@ public abstract class AbstractFacade<T> {
         .setParameter("userid", id)
         .getResultList();
         return results;
+        
     }
     
       public List<T>findUser(int id){

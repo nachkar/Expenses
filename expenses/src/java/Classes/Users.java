@@ -22,6 +22,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import com.google.common.base.Charsets;
+import com.google.common.hash.Hashing;
 
 /**
  *
@@ -54,7 +56,7 @@ public class Users implements Serializable {
     @Size(max = 50)
     @Column(name = "Username")
     private String username;
-    @Size(max = 50)
+    @Size(max = 255)
     @Column(name = "Password")
     private String password;
     @Size(max = 50)
@@ -107,7 +109,8 @@ public class Users implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+         String hash= Hashing.sha256().hashString(password, Charsets.UTF_8).toString();        
+        this.password =hash;         
     }
 
     public String getFirstName() {

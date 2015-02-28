@@ -62,9 +62,9 @@ public class UsersController implements Serializable {
         return selected;
     }
 
-      public void goToOperations() throws IOException{
-        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-        externalContext.redirect("../operations/List.xhtml");
+      public String goToOperations() throws IOException{
+            
+        return "/operations/List.xhtml";
     } 
     
     public void create() {

@@ -64,9 +64,9 @@ public class CategoriesController implements Serializable {
         }
     }
     
-        public void goToOperations() throws IOException{
-        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-        externalContext.redirect("../operations/List.xhtml");
+        public String goToOperations() throws IOException{
+        
+        return "/operations/List.xhtml";
     } 
 
     public void update() {

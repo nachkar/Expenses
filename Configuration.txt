@@ -1,8 +1,8 @@
-JDBC Connection Pool : ExpensesPool
+JDBC Connection Pool : expconnPool
 Datasource Classname : com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource
 
 JDBC Resource : 
-JNDI Name: jdbc/Expenses
+JNDI Name: jdbc/connect
 
 Database Url :jdbc:mysql://localhost:8889/Expenses
 Username:root

@@ -7,28 +7,27 @@
         <title>Login</title>
     </h:head>
     <h:body>
-        <div class="login">
-        <h:form id="loginForm">         
-            <p:growl id="msg" showDetail="true" life="3000" />
- 
-                    <fieldset>
-                        <label class="label" for="username">Username</label>
-                         <p:inputText id="username" value="#{LoginBean.username}" class="textfield"></p:inputText>                     
-                    </fieldset>
+        
+                <div class="login">
 
-                    <fieldset >
-                         <label class="label" for="password">Password</label>
-                         <p:password id="password" value="#{LoginBean.password}" feedback="false" class="textfield"></p:password>
+        <form method="POST" action="j_security_check">
+                     <fieldset>
+                         <label class="label" for="username">Username</label>
+                         <input type="text" name="j_username" class="textfield"/>                   
                     </fieldset>
-                    <fieldset >
-                        <p:commandButton action="#{LoginBean.checkValidUser()}" value="" update="loginForm" ajax="true" styleClass="login-btn"></p:commandButton>
-                    </fieldset>
-                      <fieldset class="error-login">
-                          <h:outputText class="label" value="#{LoginBean.error}"/>
-                       </fieldset>
-        </h:form>
-        </div>
-    </h:body>
- 
+             <fieldset>
+                     <label class="label" for="password">Password</label>
+                     <input type="password" name="j_password" class="textfield"/>                   
+             </fieldset>
+            <fieldset >
+                <input type="submit" value="" class="login-btn"/>
+             </fieldset>
+
+        </form>
+                </div>
+        
+            </h:body>
+
+
 </html>
 
