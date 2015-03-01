@@ -7,3 +7,8 @@ JNDI Name: jdbc/connect
 Database Url :jdbc:mysql://localhost:8889/Expenses
 Username:root
 Password:root
+
+Unzip Libraries.zip
+Download and install iReport Plugin
+
+Change in operations/List.xml (exportPDF) the path where to save the PDF and the path of the Report.jrxml file.

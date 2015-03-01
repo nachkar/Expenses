@@ -13,6 +13,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -29,6 +30,13 @@ import javax.faces.convert.FacesConverter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 
 @ManagedBean(name = "operationsController")
 @SessionScoped
@@ -138,6 +146,19 @@ public class OperationsController implements Serializable {
     {
         return "/categories/List.xhtml";
     } 
+    
+    public void exportPDF() throws JRException, ClassNotFoundException, SQLException
+    {        
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection conect = DriverManager.getConnection("jdbc:mysql://localhost:8889/Expenses","root","root");
+        
+        JasperReport jasperReport;
+        JasperPrint jasperPrint;
+        jasperReport = JasperCompileManager.compileReport("/Users/noelachkar/NetBeansProjects/expenses/web/operations/Report.jrxml");
+        jasperPrint = JasperFillManager.fillReport(
+        jasperReport, new HashMap(), conect);
+        JasperExportManager.exportReportToPdfFile(jasperPrint, "/Users/noelachkar/desktop/simple_report.pdf");
+    }
 
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("OperationsUpdated"));

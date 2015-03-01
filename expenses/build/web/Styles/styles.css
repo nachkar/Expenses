@@ -42,6 +42,7 @@ ul.header-navig li{float:left; width:366px}
 li.itunes-logo{ background:url(../images/itc-masthead.png) no-repeat 0 0; width:173px; height:23px;display:block}	
 li.company-name{ text-align:center; font-size:2.5em;  font-weight:bold}
 .sign-out{ background:url(../images/sign-out-btn.png) no-repeat;width:61px; height:24px;border:0;-webkit-appearance: caret;-moz-appearance: caret; cursor:pointer;  position:relative; float:right; top1:-20px}
+.pdf{ background:url(../images/pdf.png) no-repeat;width:61px; height:24px;border:0;-webkit-appearance: caret;-moz-appearance: caret; cursor:pointer;  position:relative; float:right; top1:-20px}
 li.table-grid-btn a{ background:url(../images/table-grid-btn.png) no-repeat; border:none;	width:99px; height:20px;display:block;text-align:center; color:#FFF; text-decoration:none; font-size:.8em}
 li.table-grid-btn a:hover{ background-position: 0 -19px;}
 li.table-grid-btn a.visited{ background-position: 0 -19px;}

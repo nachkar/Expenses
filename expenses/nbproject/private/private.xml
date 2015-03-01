@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/noelachkar/NetBeansProjects/expenses/web/WEB-INF/web.xml</file>
-            <file>file:/Users/noelachkar/NetBeansProjects/expenses/src/java/Beans/OperationsFacade.java</file>
-            <file>file:/Users/noelachkar/NetBeansProjects/expenses/web/index.xhtml</file>
-            <file>file:/Users/noelachkar/NetBeansProjects/expenses/web/Login.xhtml</file>
-            <file>file:/Users/noelachkar/NetBeansProjects/expenses/src/java/Beans/UsersFacade.java</file>
-            <file>file:/Users/noelachkar/NetBeansProjects/expenses/src/java/Beans/CategoriesFacade.java</file>
-            <file>file:/Users/noelachkar/NetBeansProjects/expenses/src/conf/persistence.xml</file>
+            <file>file:/Users/noelachkar/NetBeansProjects/expenses/web/operations/Reports.jrxml</file>
+            <file>file:/Users/noelachkar/NetBeansProjects/expenses/web/operations/List.xhtml</file>
+            <file>file:/Users/noelachkar/NetBeansProjects/expenses/src/java/JSFClasses/OperationsController.java</file>
+            <file>file:/Users/noelachkar/NetBeansProjects/expenses/web/operations/Report.jrxml</file>
         </group>
     </open-files>
 </project-private>
