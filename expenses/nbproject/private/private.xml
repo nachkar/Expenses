@@ -3,10 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/noelachkar/NetBeansProjects/expenses/web/operations/Reports.jrxml</file>
-            <file>file:/Users/noelachkar/NetBeansProjects/expenses/web/operations/List.xhtml</file>
-            <file>file:/Users/noelachkar/NetBeansProjects/expenses/src/java/JSFClasses/OperationsController.java</file>
-            <file>file:/Users/noelachkar/NetBeansProjects/expenses/web/operations/Report.jrxml</file>
+            <file>file:/Users/nachkar/Desktop/Project/expenses/src/java/Classes/Users.java</file>
+            <file>file:/Users/nachkar/Desktop/Project/expenses/web/WEB-INF/web.xml</file>
+            <file>file:/Users/nachkar/Desktop/Project/expenses/src/conf/persistence.xml</file>
+            <file>file:/Users/nachkar/Desktop/Project/expenses/web/WEB-INF/glassfish-web.xml</file>
+            <file>file:/Users/nachkar/Desktop/Project/expenses/web/users/List.xhtml</file>
+            <file>file:/Users/nachkar/Desktop/Project/expenses/web/operations/List.xhtml</file>
         </group>
     </open-files>
 </project-private>
